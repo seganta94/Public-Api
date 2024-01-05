@@ -1,21 +1,38 @@
-<h1>Public API - Stock</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Stock Information</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="bg-dark text-white">
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div>
+            <h1 class="text-center">Public API - Current Stock Information</h1>
 
-    <div class="container">
-        <form id="myForm" method="post" action="/stock">
-            <label for="stockTicker">Stock Ticker Symbol:</label>
-            <input type="text" id="stockTicker" name="stockTicker">
-            <input id="post" type="submit" value="Submit">
-        </form>
+            <form id="myForm" method="post" action="/stock" class="text-center">
+                <div class="form-group">
+                    <label for="stockTicker"><b>Stock Ticker:</b></label>
+                    <input type="text" class="form-control" id="stockTicker" name="stockTicker">
+                </div>
+                <button type="submit" class="btn btn-primary mb-4">Submit</button>
+            </form>
 
-        <div class="response-area">
-          <% if (locals.content) {%>
-          <li>Symbol: <%= content.symbol %></li>
-          <li>Date: <%= content.date %></li>
-          <li>Open: <%= content.open %></li>
-          <li>Close: <%= content.close %></li>
-          <li>Volume: <%= content.volume %></li>
-          <li>High: <%= content.high %></li>
-          <li>Low: <%= content.low %></li>
-          <% } %>
+            <div class="response-area">
+                <% if (locals.content) { %>
+                    <ul class="list-unstyled text-center">
+                        <li><b>Symbol:</b> <%= content.symbol %></li>
+                        <li><b>Date:</b> <%= new Date(content.date).toLocaleDateString() %></li>
+                        <li><b>Volume:</b> <%= content.volume.toLocaleString() %></li>
+                        <li><b>Open:</b> $<%= content.open.toFixed(2) %></li>
+                        <li><b>Close:</b> $<%= content.close.toFixed(2) %></li>
+                        <li><b>High:</b> $<%= content.high.toFixed(2) %></li>
+                        <li><b>Low:</b> $<%= content.low.toFixed(2) %></li>
+                    </ul>
+                <% } %>
+            </div>
         </div>
     </div>
+</body>
+</html>
