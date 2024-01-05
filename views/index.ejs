@@ -1,1 +1,21 @@
-<h1>Public Api</h1>
+<h1>Public API - Stock</h1>
+
+    <div class="container">
+        <form id="myForm" method="post" action="/stock">
+            <label for="stockTicker">Stock Ticker Symbol:</label>
+            <input type="text" id="stockTicker" name="stockTicker">
+            <input id="post" type="submit" value="Submit">
+        </form>
+
+        <div class="response-area">
+          <% if (locals.content) {%>
+          <li>Symbol: <%= content.symbol %></li>
+          <li>Date: <%= content.date %></li>
+          <li>Open: <%= content.open %></li>
+          <li>Close: <%= content.close %></li>
+          <li>Volume: <%= content.volume %></li>
+          <li>High: <%= content.high %></li>
+          <li>Low: <%= content.low %></li>
+          <% } %>
+        </div>
+    </div>
