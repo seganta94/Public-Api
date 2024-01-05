@@ -1,13 +1,16 @@
 import express from "express";
 import axios from "axios"
 import bodyParser from "body-parser";
+import dotenv from 'dotenv';
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
-const apiKey = "3ade1154e4af90628021c0f3f9efd187"
+dotenv.config();
+
+const apiKey = process.env.MARKET_STACK_API_KEY;
 
 app.get("/", (req, res) => {
   res.render("index.ejs")
